@@ -1,9 +1,9 @@
-# Modern Galeria — Grupo Impper (Legacy)
+# Modern Galeria — MRV Torres do Parque
 
 Galeria de imagens/plantas/vídeos para injeção via script no 3DVista, hospedada no AWS S3.
 
-**Projeto:** Grupo Impper — Legacy  
-**Tema:** navy imersivo (`#183142` / `#FFFFFF` / `#E57D43`)
+**Projeto:** MRV — Torres do Parque
+**Tema:** verde imersivo (`#002E1D` / `#EAFFF7`)
 
 ---
 
@@ -11,18 +11,18 @@ Galeria de imagens/plantas/vídeos para injeção via script no 3DVista, hospeda
 
 | Arquivo | URL |
 |---------|-----|
-| Galeria | `https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/grupo+impper/legacy/ferramentas/galeria/index.html` |
-| Vídeos  | `https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/grupo+impper/legacy/ferramentas/galeria/video-gallery.html` |
-| Script  | `https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/grupo+impper/legacy/ferramentas/galeria/inject.js` |
+| Galeria | `https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/MRV/mrv+torres+do+parque/ferramentas/galeria/index.html` |
+| Vídeos  | `https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/MRV/mrv+torres+do+parque/ferramentas/galeria/video-gallery.html` |
+| Script  | `https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/MRV/mrv+torres+do+parque/ferramentas/galeria/inject.js` |
 
-**S3 path:** `s3://skylineip/Tour Virtual/grupo impper/legacy/ferramentas/galeria/`
+**S3 path:** `s3://skylineip/Tour Virtual/MRV/mrv torres do parque/ferramentas/galeria/`
 
 ---
 
 ## Estrutura de arquivos
 
 ```
-galeria/  (grupo impper / legacy)
+galeria/  (MRV / torres do parque)
 ├── index.html              ← galeria de imagens + plantas (auto-suficiente)
 ├── video-gallery.html      ← galeria de vídeos
 ├── diferenciais.html       ← ficha de diferenciais (scroll)
@@ -31,17 +31,13 @@ galeria/  (grupo impper / legacy)
 ├── generate_thumbs.ps1     ← gerador de thumbnails (Windows/GDI+, sem deps)
 ├── generate_thumbs.py      ← gerador alternativo (Python + Pillow)
 └── assets/
-    ├── residencial/
-    │   ├── geral/            ← fachadas, lazer e áreas comuns
-    │   ├── 2-dormitorios/    ← interiores apto 2 dorm.
-    │   └── 3-dormitorios/    ← interiores apto 3 dorm.
-    ├── corporativo/          ← fachada corporativa + lobby
-    ├── fotomontagem/         ← fotomontagens (inserção urbana)
+    ├── imagens/
+    │   ├── areas-comuns/         ← implantação 3D, piscina, playground, churrasqueira,
+    │   │                            academia, salão de festas, portaria
+    │   └── apartamento-decorado/ ← sala, quarto maior, quarto menor, varanda
     ├── plantas/
-    │   ├── implantacao/      ← níveis do empreendimento
-    │   ├── corporativo/      ← pavimentos da torre corporativa
-    │   ├── 2-dormitorios/    ← plantas humanizadas 2 dorm.
-    │   └── 3-dormitorios/    ← plantas humanizadas 3 dorm.
+    │   ├── implantacao/          ← planta de implantação (níveis do empreendimento)
+    │   └── torre-01/              ← plantas humanizadas dos aptos (003, 502, 504)
     ├── videos/               ← .mp4 (gitignored; direto no S3)
     ├── BOOK-PRINT.pdf        ← book de referência (gitignored, não sobe ao S3)
     └── thumbs/               ← gerado automaticamente (espelha a árvore, .jpg)
@@ -55,36 +51,33 @@ galeria/  (grupo impper / legacy)
 
 ### Modo `imagens`
 
-| Categoria | Label | Sub-categorias | Pasta |
-|-----------|-------|----------------|-------|
-| `residencial` | Residencial | Geral · 2 Dormitórios · 3 Dormitórios | `assets/residencial/*` |
-| `corporativo` | Corporativo | — | `assets/corporativo/` |
-| `fotomontagem` | Fotomontagem | — | `assets/fotomontagem/` |
+| Categoria | Label | Pasta |
+|-----------|-------|-------|
+| `areas-comuns` | Áreas Comuns | `assets/imagens/areas-comuns/` |
+| `apartamento`  | Apartamento Decorado | `assets/imagens/apartamento-decorado/` |
 
 ### Modo `plantas`
 
 | Tipologia | Label | Pasta | Formato |
 |-----------|-------|-------|---------|
-| `pl-implantacao` | Implantação | `assets/plantas/implantacao/` | card de abas (3 níveis) |
-| `pl-corporativo` | Corporativo | `assets/plantas/corporativo/` | card de abas (7 pavimentos) |
-| `pl-2d` | 2 Dormitórios | `assets/plantas/2-dormitorios/` | cards individuais |
-| `pl-3d` | 3 Dormitórios | `assets/plantas/3-dormitorios/` | cards individuais |
+| `pl-implantacao` | Implantação | `assets/plantas/implantacao/` | card individual |
+| `pl-torre-01`    | Torre 01    | `assets/plantas/torre-01/`    | cards individuais (aptos 003, 502, 504) |
 
 ---
 
 ## Cards de plantas com abas (`cobertura-plan`)
 
-Plantas que são **níveis de um mesmo conjunto** são agrupadas num único card com abas
+Plantas que são **níveis de um mesmo conjunto** podem ser agrupadas num único card com abas
 que alternam (e sobrepõem) as variantes. Quando há **exatamente 2 pisos**, aparece também
-o botão “Ver ambas” (comparação lado a lado); com mais pisos, só as abas.
+o botão "Ver ambas" (comparação lado a lado); com mais pisos, só as abas. Nenhum item do
+projeto atual usa esse formato — todas as plantas de Torres do Parque são cards individuais —
+mas o suporte permanece no motor da galeria para uso futuro:
 
 ```js
-{ type:'cobertura-plan', category:'plantas', subCategory:'pl-corporativo',
-  title:'Pavimentos — Corporativo', subtitle:'Torre Corporativa', floors:[
-    { label:'Subsolo',      src:'assets/plantas/corporativo/subsolo.png',     thumb:'assets/thumbs/plantas/corporativo/subsolo.jpg' },
-    { label:'Térreo',       src:'assets/plantas/corporativo/terreo.jpg',      thumb:'assets/thumbs/plantas/corporativo/terreo.jpg' },
-    { label:'1º Pavimento', src:'assets/plantas/corporativo/pavimento-1.png', thumb:'assets/thumbs/plantas/corporativo/pavimento-1.jpg' },
-    // ... até 5º Pavimento
+{ type:'cobertura-plan', category:'plantas', subCategory:'pl-torre-01',
+  title:'Pavimentos — Torre 01', subtitle:'Torre 01', floors:[
+    { label:'Térreo',       src:'assets/plantas/torre-01/terreo.jpg',       thumb:'assets/thumbs/plantas/torre-01/terreo.jpg' },
+    { label:'Tipo',         src:'assets/plantas/torre-01/tipo.jpg',         thumb:'assets/thumbs/plantas/torre-01/tipo.jpg' },
 ]},
 ```
 
@@ -104,7 +97,7 @@ Geração **sem dependências** no Windows via GDI+:
 ```
 
 O script espelha `assets/` em `assets/thumbs/` (sempre `.jpg`, caminho minúsculo),
-ignora `thumbs/`, `videos/` e o PDF. Última geração: **127 MB → 5,4 MB** (69 imagens).
+ignora `thumbs/`, `videos/` e o PDF.
 
 > Alternativa multiplataforma: `python generate_thumbs.py` (requer Python + Pillow).
 
@@ -118,7 +111,7 @@ ignora `thumbs/`, `videos/` e o PDF. Última geração: **127 MB → 5,4 MB** (6
 ### Sync completo
 
 ```bash
-aws s3 sync . "s3://skylineip/Tour Virtual/grupo impper/legacy/ferramentas/galeria/" \
+aws s3 sync . "s3://skylineip/Tour Virtual/MRV/mrv torres do parque/ferramentas/galeria/" \
   --exclude ".git/*" --exclude ".claude/*" --exclude "*.py" \
   --exclude "README.md" --exclude ".gitattributes" --exclude "*.md" \
   --exclude "deploy.ps1" --exclude "*.pdf" \
@@ -128,10 +121,10 @@ aws s3 sync . "s3://skylineip/Tour Virtual/grupo impper/legacy/ferramentas/galer
 ### Atualizar só index.html e inject.js
 
 ```bash
-aws s3 cp index.html "s3://skylineip/Tour Virtual/grupo impper/legacy/ferramentas/galeria/index.html" \
+aws s3 cp index.html "s3://skylineip/Tour Virtual/MRV/mrv torres do parque/ferramentas/galeria/index.html" \
   --cache-control "no-cache,no-store,must-revalidate"
 
-aws s3 cp inject.js "s3://skylineip/Tour Virtual/grupo impper/legacy/ferramentas/galeria/inject.js" \
+aws s3 cp inject.js "s3://skylineip/Tour Virtual/MRV/mrv torres do parque/ferramentas/galeria/inject.js" \
   --cache-control "no-cache,no-store,must-revalidate"
 ```
 
@@ -146,13 +139,12 @@ aws s3 cp inject.js "s3://skylineip/Tour Virtual/grupo impper/legacy/ferramentas
 ```js
 (function(){
   var s = document.createElement('script');
-  s.src = 'https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/grupo+impper/legacy/ferramentas/galeria/inject.js?v=' + Date.now();
+  s.src = 'https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/MRV/mrv+torres+do+parque/ferramentas/galeria/inject.js?v=' + Date.now();
   document.head.appendChild(s);
 })();
 ```
 
-> **`?v=` + `Date.now()`** — cache-busting: força o browser a baixar sempre a versão mais recente do script, evitando que o 3DVista sirva uma versão antiga em cache.  
-> Esse detalhe foi o que resolveu o problema de redirecionamento para a galeria de outro projeto.
+> **`?v=` + `Date.now()`** — cache-busting: força o browser a baixar sempre a versão mais recente do script, evitando que o 3DVista sirva uma versão antiga em cache.
 
 ### Passo 2 — Acionar nos hotspots/botões
 
@@ -174,16 +166,15 @@ GaleriaPlantas(0);
 
 ## Cores e tipografia
 
-Tema **navy imersivo** do Grupo Impper:
+Tema **verde imersivo** do MRV — Torres do Parque:
 
 | Token CSS | Valor | Papel |
 |-----------|-------|-------|
-| `--bg` (fundo) | `#183142` | Navy principal (fundo) |
-| `--surface` | `#1f3d51` | Superfície de card |
-| `--dark` (foreground) | `#FFFFFF` | Texto/ícones (branco) |
-| `--accent` | `#E57D43` | Laranja — destaque / estado ativo |
+| `--bg` (fundo) | `#002E1D` | Verde-escuro principal (fundo) — cor primária |
+| `--surface` | `#073C28` | Superfície de card |
+| `--dark` (foreground) | `#EAFFF7` | Texto/ícones (verde-claro) — cor secundária |
+| `--accent` | `#EAFFF7` | Destaque / estado ativo (usa a secundária sobre fundo escuro) |
 | Fonte títulos | Cormorant Garamond | — |
 | Fonte UI | Inter | — |
 
-> Plantas técnicas mantêm **fundo branco** no card (para legibilidade do desenho), com texto navy.
-> Cards de plantas: `#FFFFFF` de fundo, `#183142` de texto.
+> Plantas técnicas mantêm **fundo claro** no card (`#EAFFF7`, para legibilidade do desenho), com texto verde-escuro (`#002E1D`) — a mesma dupla primária/secundária, com os papéis invertidos.

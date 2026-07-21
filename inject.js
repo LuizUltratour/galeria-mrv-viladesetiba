@@ -1,9 +1,9 @@
 (function (w, d) {
   'use strict';
 
-  var GALLERY_URL        = 'https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/grupo+impper/legacy/ferramentas/galeria/index.html';
-  var VIDEO_GALLERY_URL  = 'https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/grupo+impper/legacy/ferramentas/galeria/video-gallery.html';
-  var DIFERENCIAIS_URL   = 'https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/grupo+impper/legacy/ferramentas/galeria/diferenciais.html';
+  var GALLERY_URL        = 'https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/MRV/mrv+torres+do+parque/ferramentas/galeria/index.html';
+  var VIDEO_GALLERY_URL  = 'https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/MRV/mrv+torres+do+parque/ferramentas/galeria/video-gallery.html';
+  var DIFERENCIAIS_URL   = 'https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/MRV/mrv+torres+do+parque/ferramentas/galeria/diferenciais.html';
 
   var overlay    = null;
   var msgHandler = null;
@@ -30,7 +30,7 @@
 
     var iframe = d.createElement('iframe');
     iframe.src  = GALLERY_URL + '?mode=' + encodeURIComponent(mode || 'imagens');
-    iframe.style.cssText = 'width:100%;height:100%;border:none;display:block;background:#183142;';
+    iframe.style.cssText = 'width:100%;height:100%;border:none;display:block;background:#002E1D;';
     iframe.setAttribute('allow', 'fullscreen');
 
     overlay.appendChild(iframe);

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Galeria</title>
+  <title>Galeria — MRV Torres do Parque</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -11,18 +11,19 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      /* Grupo Impper — tema navy imersivo.
-         --bg = fundo navy · --dark = "tinta"/foreground branco · --accent = laranja */
-      --bg: #183142;            /* fundo navy principal */
-      --surface: #1f3d51;       /* superfície de card (navy +luz) */
-      --surface-2: #26485e;     /* superfície elevada / hover */
-      --dark: #FFFFFF;          /* foreground / texto principal */
-      --text-soft: rgba(255,255,255,0.62);
-      --border: rgba(255,255,255,0.12);
-      --border-strong: rgba(255,255,255,0.28);
-      --accent: #E57D43;        /* laranja — destaque / estado ativo */
-      --accent-soft: rgba(229,125,67,0.16);
-      --white: #FFFFFF;
+      /* MRV — Torres do Parque — tema verde imersivo.
+         --bg = fundo verde-escuro (primária) · --dark = foreground verde-claro (secundária) · --accent = secundária usada em destaque/estado ativo */
+      --bg: #002E1D;             /* verde-escuro principal — cor primária */
+      --surface: #073C28;        /* superfície de card (verde +luz) */
+      --surface-2: #0E4A32;      /* superfície elevada / hover */
+      --dark: #EAFFF7;           /* foreground / texto principal — cor secundária */
+      --text-soft: rgba(234,255,247,0.62);
+      --border: rgba(234,255,247,0.12);
+      --border-strong: rgba(234,255,247,0.28);
+      --accent: #EAFFF7;         /* verde-claro — destaque / estado ativo */
+      --accent-ink: #002E1D;     /* texto escuro sobre fundo de destaque claro */
+      --accent-soft: rgba(234,255,247,0.14);
+      --white: #EAFFF7;
       --font-serif: 'Cormorant Garamond', Georgia, serif;
       --font-sans: 'Inter', system-ui, sans-serif;
       --ease: cubic-bezier(0.4, 0, 0.2, 1);
@@ -102,7 +103,7 @@
       transition: background 0.22s var(--ease), color 0.22s var(--ease), border-color 0.22s var(--ease), transform 0.15s var(--ease);
     }
     .f-btn:hover { border-color: var(--accent); background: var(--accent-soft); }
-    .f-btn.active { background: var(--accent); color: #FFFFFF; border-color: var(--accent); box-shadow: 0 4px 14px rgba(229,125,67,0.35); }
+    .f-btn.active { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); box-shadow: 0 4px 14px rgba(0,46,29,0.35); }
     .f-btn:active { transform: scale(0.97); }
 
     /* Sub-filter */
@@ -140,7 +141,7 @@
       transition: opacity 0.2s, border-color 0.2s, background 0.2s, color 0.2s;
     }
     .sf-btn:hover { opacity: 1; border-color: var(--border-strong); }
-    .sf-btn.active { background: var(--accent); color: var(--white); border-color: var(--accent); opacity: 1; }
+    .sf-btn.active { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); opacity: 1; }
 
     /* ── GALLERY SCROLL ── */
     #g-scroll {
@@ -224,8 +225,8 @@
       position: absolute;
       bottom: 0; left: 0; right: 0;
       padding: 32px 14px 13px;
-      background: linear-gradient(to top, rgba(9,19,27,0.94) 0%, rgba(9,19,27,0.55) 58%, transparent 100%);
-      color: #FFFFFF;
+      background: linear-gradient(to top, rgba(0,20,13,0.94) 0%, rgba(0,20,13,0.55) 58%, transparent 100%);
+      color: var(--dark);
       opacity: 0;
       transition: opacity 0.35s ease;
       z-index: 2;
@@ -260,8 +261,8 @@
       opacity: 0;
       transform: scale(0.75);
       transition: opacity 0.25s var(--ease), transform 0.3s var(--spring);
-      color: #FFFFFF;
-      box-shadow: 0 4px 14px rgba(229,125,67,0.45);
+      color: var(--accent-ink);
+      box-shadow: 0 4px 14px rgba(0,46,29,0.45);
       z-index: 2;
     }
     .g-card.loaded:hover .card-zoom { opacity: 1; transform: scale(1); }
@@ -287,7 +288,7 @@
       display: flex;
       flex-direction: column;
       background: var(--white);
-      color: #183142;                 /* texto navy sobre card branco de plantas */
+      color: var(--accent-ink);       /* texto verde-escuro sobre card claro de plantas */
       border: 1px solid rgba(0,0,0,0.10);
     }
     .g-card.cob-card:hover { transform: none; box-shadow: 0 6px 20px rgba(0,0,0,0.28); border-color: rgba(0,0,0,0.10); }
@@ -333,8 +334,8 @@
     .cob-badge {
       display: inline-block;
       padding: 3px 11px;
-      background: var(--accent);
-      color: #FFFFFF;
+      background: var(--bg);
+      color: var(--dark);
       font-size: 8.5px;
       font-weight: 600;
       letter-spacing: 0.14em;
@@ -388,7 +389,7 @@
       white-space: nowrap;
       transition: background 0.22s var(--ease), color 0.22s var(--ease), opacity 0.22s;
     }
-    .floor-tab.active { background: var(--accent); color: #FFFFFF; opacity: 1; }
+    .floor-tab.active { background: var(--accent); color: var(--accent-ink); opacity: 1; }
 
     /* Floor image area */
     .cob-body {
@@ -443,8 +444,8 @@
       position: absolute;
       bottom: 14px; left: 14px;
       padding: 4px 12px;
-      background: rgba(24,49,66,0.82);
-      color: #FFFFFF;
+      background: rgba(0,46,29,0.82);
+      color: var(--dark);
       font-size: 9.5px;
       font-weight: 500;
       letter-spacing: 0.09em;
@@ -473,15 +474,15 @@
       font-size: 10.5px;
       font-weight: 500;
       letter-spacing: 0.06em;
-      color: #183142;
+      color: var(--accent-ink);
       border-radius: 40px;
       transition: background 0.22s var(--ease), color 0.22s var(--ease), border-color 0.22s var(--ease);
     }
-    .btn-see-both:hover { background: var(--accent); color: #FFFFFF; border-color: var(--accent); }
+    .btn-see-both:hover { background: var(--bg); color: var(--dark); border-color: var(--bg); }
     .cob-hint {
       font-size: 10px;
       letter-spacing: 0.05em;
-      color: rgba(24,49,66,0.5);
+      color: rgba(0,46,29,0.5);
       text-transform: uppercase;
     }
 
@@ -515,7 +516,7 @@
       z-index: 9000;
       display: flex;
       flex-direction: column;
-      background: rgba(9,19,27,0.98);
+      background: rgba(0,20,13,0.98);
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.3s ease;
@@ -535,7 +536,7 @@
       font-family: var(--font-sans);
       font-size: 13px;
       font-weight: 600;
-      color: #FFFFFF;
+      color: var(--dark);
       letter-spacing: 0.02em;
     }
     #lb-sub {
@@ -543,27 +544,27 @@
       font-weight: 500;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.4);
+      color: rgba(234,255,247,0.4);
       margin-top: 4px;
     }
     #lb-counter {
       font-size: 11px;
-      color: rgba(255,255,255,0.35);
+      color: rgba(234,255,247,0.35);
       letter-spacing: 0.06em;
       padding-top: 4px;
     }
     #lb-close {
       width: 38px; height: 38px;
-      border: 1px solid rgba(255,255,255,0.25);
+      border: 1px solid rgba(234,255,247,0.25);
       background: transparent;
       cursor: pointer;
       display: flex; align-items: center; justify-content: center;
       border-radius: 50%;
-      color: #FFFFFF;
+      color: var(--dark);
       transition: background 0.22s, border-color 0.22s;
       flex-shrink: 0;
     }
-    #lb-close:hover { background: var(--accent); color: #FFFFFF; border-color: var(--accent); }
+    #lb-close:hover { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
 
     #lb-body {
       flex: 1;
@@ -606,7 +607,7 @@
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
+      color: rgba(234,255,247,0.5);
       flex-shrink: 0;
     }
     .dual-col img {
@@ -622,15 +623,15 @@
       top: 50%;
       transform: translateY(-50%);
       width: 46px; height: 46px;
-      border: 1px solid rgba(255,255,255,0.18);
+      border: 1px solid rgba(234,255,247,0.18);
       background: transparent;
       cursor: pointer;
       display: flex; align-items: center; justify-content: center;
       border-radius: 50%;
-      color: #FFFFFF;
-      transition: background 0.22s, border-color 0.22s;
+      color: var(--dark);
+      transition: background 0.22s, border-color 0.22s, color 0.22s;
     }
-    .lb-nav:hover { background: var(--accent); border-color: var(--accent); }
+    .lb-nav:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
     .lb-nav:disabled { opacity: 0.18; cursor: default; }
     #lb-prev { left: 20px; }
     #lb-next { right: 20px; }
@@ -645,10 +646,10 @@
     }
     #lb-notice {
       font-size: 10.5px;
-      color: rgba(255,255,255,0.35);
+      color: rgba(234,255,247,0.35);
       letter-spacing: 0.06em;
       padding: 6px 18px;
-      border: 1px solid rgba(255,255,255,0.1);
+      border: 1px solid rgba(234,255,247,0.1);
       border-radius: 40px;
     }
     #lb-notice:empty { display: none; }
@@ -661,23 +662,23 @@
     }
     .lb-zoom-btn {
       width: 32px; height: 32px;
-      border: 1px solid rgba(255,255,255,0.22);
+      border: 1px solid rgba(234,255,247,0.22);
       background: transparent;
       cursor: pointer;
       display: flex; align-items: center; justify-content: center;
       border-radius: 50%;
-      color: #FFFFFF;
+      color: var(--dark);
       font-size: 18px;
       line-height: 1;
-      transition: background 0.2s, border-color 0.2s;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
       flex-shrink: 0;
       user-select: none;
     }
-    .lb-zoom-btn:hover { background: var(--accent); border-color: var(--accent); }
+    .lb-zoom-btn:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
     .lb-zoom-btn:disabled { opacity: 0.2; cursor: default; }
     #lb-zoom-level {
       font-size: 10.5px;
-      color: rgba(255,255,255,0.45);
+      color: rgba(234,255,247,0.45);
       letter-spacing: 0.06em;
       min-width: 36px;
       text-align: center;
@@ -751,7 +752,7 @@
       /* arrows float over image on mobile */
       #lb-prev, #lb-next {
         width: 38px; height: 38px;
-        background: rgba(9,19,27,0.6);
+        background: rgba(0,20,13,0.6);
         border-color: transparent;
       }
       #lb-prev { left: 8px; }
@@ -877,125 +878,45 @@
 // os campos src com os nomes exatos dos arquivos.
 // ================================================================
 const GALLERY_CONFIG = {
-  projectName: 'GRUPO IMPPER',
+  projectName: 'MRV — TORRES DO PARQUE',
   projectSub:  '',
 
   categories: [
-    {
-      id: 'residencial', label: 'Residencial',
-      subs: [
-        { id: 'res-geral', label: 'Geral' },
-        { id: 'res-2d',    label: '2 Dormitórios' },
-        { id: 'res-3d',    label: '3 Dormitórios' },
-      ]
-    },
-    { id: 'corporativo',  label: 'Corporativo' },
-    { id: 'fotomontagem', label: 'Fotomontagem' },
+    { id: 'areas-comuns', label: 'Áreas Comuns' },
+    { id: 'apartamento',  label: 'Apartamento Decorado' },
     {
       id: 'plantas', label: 'Plantas',
       subs: [
         { id: 'pl-implantacao', label: 'Implantação' },
-        { id: 'pl-corporativo', label: 'Corporativo' },
-        { id: 'pl-2d',          label: '2 Dormitórios' },
-        { id: 'pl-3d',          label: '3 Dormitórios' },
+        { id: 'pl-torre-01',    label: 'Torre 01' },
       ]
     },
   ],
 
   items: [
 
-    // ═══ RESIDENCIAL › GERAL (fachada, lazer, áreas comuns) ═══════
-    { id:1,  type:'image', category:'residencial', subCategory:'res-geral', title:'Torre A',                       src:'assets/residencial/geral/torre-a.jpg',              thumb:'assets/thumbs/residencial/geral/torre-a.jpg' },
-    { id:2,  type:'image', category:'residencial', subCategory:'res-geral', title:'Fachada — Três Torres',         src:'assets/residencial/geral/fachada-tres-torres.jpg',  thumb:'assets/thumbs/residencial/geral/fachada-tres-torres.jpg' },
-    { id:3,  type:'image', category:'residencial', subCategory:'res-geral', title:'Fachada Vertical',              src:'assets/residencial/geral/fachada-vertical-01.jpg',  thumb:'assets/thumbs/residencial/geral/fachada-vertical-01.jpg' },
-    { id:4,  type:'image', category:'residencial', subCategory:'res-geral', title:'Fachada Vertical',              src:'assets/residencial/geral/fachada-vertical-02.jpg',  thumb:'assets/thumbs/residencial/geral/fachada-vertical-02.jpg' },
-    { id:5,  type:'image', category:'residencial', subCategory:'res-geral', title:'Embasamento',                   src:'assets/residencial/geral/embasamento.jpg',          thumb:'assets/thumbs/residencial/geral/embasamento.jpg' },
-    { id:6,  type:'image', category:'residencial', subCategory:'res-geral', title:'Piscina',                       src:'assets/residencial/geral/piscina-01.jpg',           thumb:'assets/thumbs/residencial/geral/piscina-01.jpg' },
-    { id:7,  type:'image', category:'residencial', subCategory:'res-geral', title:'Piscina',                       src:'assets/residencial/geral/piscina-02.jpg',           thumb:'assets/thumbs/residencial/geral/piscina-02.jpg' },
-    { id:8,  type:'image', category:'residencial', subCategory:'res-geral', title:'Piscina — Vista Vertical',      src:'assets/residencial/geral/piscina-vertical.jpg',     thumb:'assets/thumbs/residencial/geral/piscina-vertical.jpg' },
-    { id:9,  type:'image', category:'residencial', subCategory:'res-geral', title:'Quadra de Areia',               src:'assets/residencial/geral/quadra-areia-01.jpg',      thumb:'assets/thumbs/residencial/geral/quadra-areia-01.jpg' },
-    { id:10, type:'image', category:'residencial', subCategory:'res-geral', title:'Quadra de Areia — Vista Vertical', src:'assets/residencial/geral/quadra-areia-02.jpg',   thumb:'assets/thumbs/residencial/geral/quadra-areia-02.jpg' },
-    { id:11, type:'image', category:'residencial', subCategory:'res-geral', title:'Quadra Recreativa',             src:'assets/residencial/geral/quadra-recreativa.jpg',    thumb:'assets/thumbs/residencial/geral/quadra-recreativa.jpg' },
-    { id:12, type:'image', category:'residencial', subCategory:'res-geral', title:'Redário e Playground',          src:'assets/residencial/geral/redario-playground.jpg',   thumb:'assets/thumbs/residencial/geral/redario-playground.jpg' },
-    { id:13, type:'image', category:'residencial', subCategory:'res-geral', title:'Playground — Torre A',          src:'assets/residencial/geral/playground.jpg',           thumb:'assets/thumbs/residencial/geral/playground.jpg' },
-    { id:14, type:'image', category:'residencial', subCategory:'res-geral', title:'Pet Place',                     src:'assets/residencial/geral/pet-place.jpg',            thumb:'assets/thumbs/residencial/geral/pet-place.jpg' },
-    { id:15, type:'image', category:'residencial', subCategory:'res-geral', title:'Car Wash',                      src:'assets/residencial/geral/car-wash.jpg',             thumb:'assets/thumbs/residencial/geral/car-wash.jpg' },
-    { id:16, type:'image', category:'residencial', subCategory:'res-geral', title:'Espaço Gourmet',                src:'assets/residencial/geral/espaco-gourmet-01.jpg',    thumb:'assets/thumbs/residencial/geral/espaco-gourmet-01.jpg' },
-    { id:17, type:'image', category:'residencial', subCategory:'res-geral', title:'Espaço Gourmet',                src:'assets/residencial/geral/espaco-gourmet-02.jpg',    thumb:'assets/thumbs/residencial/geral/espaco-gourmet-02.jpg' },
-    { id:18, type:'image', category:'residencial', subCategory:'res-geral', title:'Praça Residencial — Torre A',   src:'assets/residencial/geral/praca-residencial-01.jpg', thumb:'assets/thumbs/residencial/geral/praca-residencial-01.jpg' },
-    { id:19, type:'image', category:'residencial', subCategory:'res-geral', title:'Praça Residencial — Torre A',   src:'assets/residencial/geral/praca-residencial-02.jpg', thumb:'assets/thumbs/residencial/geral/praca-residencial-02.jpg' },
-    { id:20, type:'image', category:'residencial', subCategory:'res-geral', title:'Hall — Torre A',                src:'assets/residencial/geral/hall-torre-a.jpg',         thumb:'assets/thumbs/residencial/geral/hall-torre-a.jpg' },
-    { id:21, type:'image', category:'residencial', subCategory:'res-geral', title:'Salão de Festas',               src:'assets/residencial/geral/salao-de-festas.jpg',      thumb:'assets/thumbs/residencial/geral/salao-de-festas.jpg' },
-    { id:22, type:'image', category:'residencial', subCategory:'res-geral', title:'Salão de Jogos',                src:'assets/residencial/geral/salao-de-jogos.jpg',       thumb:'assets/thumbs/residencial/geral/salao-de-jogos.jpg' },
-    { id:23, type:'image', category:'residencial', subCategory:'res-geral', title:'Brinquedoteca',                 src:'assets/residencial/geral/brinquedoteca-01.jpg',     thumb:'assets/thumbs/residencial/geral/brinquedoteca-01.jpg' },
-    { id:24, type:'image', category:'residencial', subCategory:'res-geral', title:'Brinquedoteca',                 src:'assets/residencial/geral/brinquedoteca-02.jpg',     thumb:'assets/thumbs/residencial/geral/brinquedoteca-02.jpg' },
-    { id:25, type:'image', category:'residencial', subCategory:'res-geral', title:'Academia',                      src:'assets/residencial/geral/academia.jpg',             thumb:'assets/thumbs/residencial/geral/academia.jpg' },
-    { id:26, type:'image', category:'residencial', subCategory:'res-geral', title:'Spa & Beauty',                  src:'assets/residencial/geral/spa-beauty.jpg',           thumb:'assets/thumbs/residencial/geral/spa-beauty.jpg' },
-    { id:27, type:'image', category:'residencial', subCategory:'res-geral', title:'Coworking',                     src:'assets/residencial/geral/coworking.jpg',            thumb:'assets/thumbs/residencial/geral/coworking.jpg' },
-    { id:28, type:'image', category:'residencial', subCategory:'res-geral', title:'Sala de Estar',                 src:'assets/residencial/geral/sala-de-estar.jpg',        thumb:'assets/thumbs/residencial/geral/sala-de-estar.jpg' },
+    // ═══ ÁREAS COMUNS (fachada, lazer e serviços do empreendimento) ═══
+    { id:1, type:'image', category:'areas-comuns', title:'Implantação 3D',  src:'assets/imagens/areas-comuns/implantacao-3d.jpg',  thumb:'assets/thumbs/imagens/areas-comuns/implantacao-3d.jpg' },
+    { id:2, type:'image', category:'areas-comuns', title:'Piscina',         src:'assets/imagens/areas-comuns/piscina.jpg',         thumb:'assets/thumbs/imagens/areas-comuns/piscina.jpg' },
+    { id:3, type:'image', category:'areas-comuns', title:'Playground',      src:'assets/imagens/areas-comuns/playground.jpg',      thumb:'assets/thumbs/imagens/areas-comuns/playground.jpg' },
+    { id:4, type:'image', category:'areas-comuns', title:'Churrasqueira',   src:'assets/imagens/areas-comuns/churrasqueira.jpg',   thumb:'assets/thumbs/imagens/areas-comuns/churrasqueira.jpg' },
+    { id:5, type:'image', category:'areas-comuns', title:'Academia',        src:'assets/imagens/areas-comuns/academia.jpg',        thumb:'assets/thumbs/imagens/areas-comuns/academia.jpg' },
+    { id:6, type:'image', category:'areas-comuns', title:'Salão de Festas', src:'assets/imagens/areas-comuns/salao-de-festas.png', thumb:'assets/thumbs/imagens/areas-comuns/salao-de-festas.jpg' },
+    { id:7, type:'image', category:'areas-comuns', title:'Portaria',        src:'assets/imagens/areas-comuns/portaria.jpg',        thumb:'assets/thumbs/imagens/areas-comuns/portaria.jpg' },
 
-    // ═══ RESIDENCIAL › 2 DORMITÓRIOS ══════════════════════════════
-    { id:30, type:'image', category:'residencial', subCategory:'res-2d', title:'Cozinha',              src:'assets/residencial/2-dormitorios/cozinha-01.jpg',        thumb:'assets/thumbs/residencial/2-dormitorios/cozinha-01.jpg' },
-    { id:31, type:'image', category:'residencial', subCategory:'res-2d', title:'Cozinha',              src:'assets/residencial/2-dormitorios/cozinha-02.jpg',        thumb:'assets/thumbs/residencial/2-dormitorios/cozinha-02.jpg' },
-    { id:32, type:'image', category:'residencial', subCategory:'res-2d', title:'Sala de TV e Jantar',  src:'assets/residencial/2-dormitorios/sala-tv-jantar-01.jpg', thumb:'assets/thumbs/residencial/2-dormitorios/sala-tv-jantar-01.jpg' },
-    { id:33, type:'image', category:'residencial', subCategory:'res-2d', title:'Sala de TV e Jantar',  src:'assets/residencial/2-dormitorios/sala-tv-jantar-02.jpg', thumb:'assets/thumbs/residencial/2-dormitorios/sala-tv-jantar-02.jpg' },
-    { id:34, type:'image', category:'residencial', subCategory:'res-2d', title:'Terraço',              src:'assets/residencial/2-dormitorios/terraco.jpg',           thumb:'assets/thumbs/residencial/2-dormitorios/terraco.jpg' },
-    { id:35, type:'image', category:'residencial', subCategory:'res-2d', title:'Dormitório',           src:'assets/residencial/2-dormitorios/dormitorio.jpg',        thumb:'assets/thumbs/residencial/2-dormitorios/dormitorio.jpg' },
-    { id:36, type:'image', category:'residencial', subCategory:'res-2d', title:'Suíte',                src:'assets/residencial/2-dormitorios/suite-01.jpg',          thumb:'assets/thumbs/residencial/2-dormitorios/suite-01.jpg' },
-    { id:37, type:'image', category:'residencial', subCategory:'res-2d', title:'Suíte',                src:'assets/residencial/2-dormitorios/suite-02.jpg',          thumb:'assets/thumbs/residencial/2-dormitorios/suite-02.jpg' },
+    // ═══ APARTAMENTO DECORADO ═══════════════════════════════════════
+    { id:10, type:'image', category:'apartamento', title:'Sala',         src:'assets/imagens/apartamento-decorado/sala.jpg',         thumb:'assets/thumbs/imagens/apartamento-decorado/sala.jpg' },
+    { id:11, type:'image', category:'apartamento', title:'Quarto Maior', src:'assets/imagens/apartamento-decorado/quarto-maior.jpg', thumb:'assets/thumbs/imagens/apartamento-decorado/quarto-maior.jpg' },
+    { id:12, type:'image', category:'apartamento', title:'Quarto Menor', src:'assets/imagens/apartamento-decorado/quarto-menor.jpg', thumb:'assets/thumbs/imagens/apartamento-decorado/quarto-menor.jpg' },
+    { id:13, type:'image', category:'apartamento', title:'Varanda',      src:'assets/imagens/apartamento-decorado/varanda.jpg',      thumb:'assets/thumbs/imagens/apartamento-decorado/varanda.jpg' },
 
-    // ═══ RESIDENCIAL › 3 DORMITÓRIOS ══════════════════════════════
-    { id:40, type:'image', category:'residencial', subCategory:'res-3d', title:'Cozinha',              src:'assets/residencial/3-dormitorios/cozinha-01.jpg',        thumb:'assets/thumbs/residencial/3-dormitorios/cozinha-01.jpg' },
-    { id:41, type:'image', category:'residencial', subCategory:'res-3d', title:'Cozinha',              src:'assets/residencial/3-dormitorios/cozinha-02.jpg',        thumb:'assets/thumbs/residencial/3-dormitorios/cozinha-02.jpg' },
-    { id:42, type:'image', category:'residencial', subCategory:'res-3d', title:'Área de Serviço',      src:'assets/residencial/3-dormitorios/area-de-servico.jpg',   thumb:'assets/thumbs/residencial/3-dormitorios/area-de-servico.jpg' },
-    { id:43, type:'image', category:'residencial', subCategory:'res-3d', title:'Sala de TV e Jantar',  src:'assets/residencial/3-dormitorios/sala-tv-jantar-01.jpg', thumb:'assets/thumbs/residencial/3-dormitorios/sala-tv-jantar-01.jpg' },
-    { id:44, type:'image', category:'residencial', subCategory:'res-3d', title:'Sala de TV e Jantar',  src:'assets/residencial/3-dormitorios/sala-tv-jantar-02.jpg', thumb:'assets/thumbs/residencial/3-dormitorios/sala-tv-jantar-02.jpg' },
-    { id:45, type:'image', category:'residencial', subCategory:'res-3d', title:'Terraço',              src:'assets/residencial/3-dormitorios/terraco.jpg',           thumb:'assets/thumbs/residencial/3-dormitorios/terraco.jpg' },
-    { id:46, type:'image', category:'residencial', subCategory:'res-3d', title:'Dormitório',           src:'assets/residencial/3-dormitorios/dormitorio-01.jpg',     thumb:'assets/thumbs/residencial/3-dormitorios/dormitorio-01.jpg' },
-    { id:47, type:'image', category:'residencial', subCategory:'res-3d', title:'Dormitório',           src:'assets/residencial/3-dormitorios/dormitorio-02.jpg',     thumb:'assets/thumbs/residencial/3-dormitorios/dormitorio-02.jpg' },
-    { id:48, type:'image', category:'residencial', subCategory:'res-3d', title:'Suíte',                src:'assets/residencial/3-dormitorios/suite-01.jpg',          thumb:'assets/thumbs/residencial/3-dormitorios/suite-01.jpg' },
-    { id:49, type:'image', category:'residencial', subCategory:'res-3d', title:'Suíte',                src:'assets/residencial/3-dormitorios/suite-02.jpg',          thumb:'assets/thumbs/residencial/3-dormitorios/suite-02.jpg' },
+    // ═══ PLANTAS › IMPLANTAÇÃO ══════════════════════════════════════
+    { id:20, type:'image', category:'plantas', subCategory:'pl-implantacao', isPlant:true, title:'Implantação', src:'assets/plantas/implantacao/implantacao.jpg', thumb:'assets/thumbs/plantas/implantacao/implantacao.jpg' },
 
-    // ═══ CORPORATIVO ══════════════════════════════════════════════
-    { id:60, type:'image', category:'corporativo', title:'Fachada Corporativa', src:'assets/corporativo/fachada-corporativa-01.jpg', thumb:'assets/thumbs/corporativo/fachada-corporativa-01.jpg' },
-    { id:61, type:'image', category:'corporativo', title:'Fachada Corporativa', src:'assets/corporativo/fachada-corporativa-02.jpg', thumb:'assets/thumbs/corporativo/fachada-corporativa-02.jpg' },
-    { id:62, type:'image', category:'corporativo', title:'Lobby Corporativo',   src:'assets/corporativo/lobby-corporativo.jpg',      thumb:'assets/thumbs/corporativo/lobby-corporativo.jpg' },
-
-    // ═══ FOTOMONTAGEM ═════════════════════════════════════════════
-    { id:70, type:'image', category:'fotomontagem', title:'Fotomontagem', src:'assets/fotomontagem/fotomontagem-01.jpg', thumb:'assets/thumbs/fotomontagem/fotomontagem-01.jpg' },
-    { id:71, type:'image', category:'fotomontagem', title:'Fotomontagem', src:'assets/fotomontagem/fotomontagem-02.jpg', thumb:'assets/thumbs/fotomontagem/fotomontagem-02.jpg' },
-    { id:72, type:'image', category:'fotomontagem', title:'Fotomontagem', src:'assets/fotomontagem/fotomontagem-03.jpg', thumb:'assets/thumbs/fotomontagem/fotomontagem-03.jpg' },
-
-    // ═══ PLANTAS › IMPLANTAÇÃO (abas) ═════════════════════════════
-    { id:80, type:'cobertura-plan', category:'plantas', subCategory:'pl-implantacao',
-      title:'Implantação', subtitle:'Níveis do empreendimento', area:'', floors:[
-        { label:'Empreendimento',      src:'assets/plantas/implantacao/empreendimento.png',      thumb:'assets/thumbs/plantas/implantacao/empreendimento.jpg' },
-        { label:'Térreo — 6 Torres',   src:'assets/plantas/implantacao/terreo-6-torres.png',     thumb:'assets/thumbs/plantas/implantacao/terreo-6-torres.jpg' },
-        { label:'Subsolo Residencial', src:'assets/plantas/implantacao/subsolo-residencial.png', thumb:'assets/thumbs/plantas/implantacao/subsolo-residencial.jpg' },
-    ]},
-
-    // ═══ PLANTAS › CORPORATIVO — Pavimentos (abas) ════════════════
-    { id:81, type:'cobertura-plan', category:'plantas', subCategory:'pl-corporativo',
-      title:'Pavimentos — Corporativo', subtitle:'Torre Corporativa', area:'', floors:[
-        { label:'Subsolo',      src:'assets/plantas/corporativo/subsolo.png',     thumb:'assets/thumbs/plantas/corporativo/subsolo.jpg' },
-        { label:'Térreo',       src:'assets/plantas/corporativo/terreo.jpg',      thumb:'assets/thumbs/plantas/corporativo/terreo.jpg' },
-        { label:'1º Pavimento', src:'assets/plantas/corporativo/pavimento-1.png', thumb:'assets/thumbs/plantas/corporativo/pavimento-1.jpg' },
-        { label:'2º Pavimento', src:'assets/plantas/corporativo/pavimento-2.png', thumb:'assets/thumbs/plantas/corporativo/pavimento-2.jpg' },
-        { label:'3º Pavimento', src:'assets/plantas/corporativo/pavimento-3.png', thumb:'assets/thumbs/plantas/corporativo/pavimento-3.jpg' },
-        { label:'4º Pavimento', src:'assets/plantas/corporativo/pavimento-4.png', thumb:'assets/thumbs/plantas/corporativo/pavimento-4.jpg' },
-        { label:'5º Pavimento', src:'assets/plantas/corporativo/pavimento-5.png', thumb:'assets/thumbs/plantas/corporativo/pavimento-5.jpg' },
-    ]},
-
-    // ═══ PLANTAS › 2 DORMITÓRIOS ══════════════════════════════════
-    { id:90, type:'image', category:'plantas', subCategory:'pl-2d', isPlant:true, title:'Apto Tipo 4 — Térreo Menor', src:'assets/plantas/2-dormitorios/tipo-4-terreo-menor.png', thumb:'assets/thumbs/plantas/2-dormitorios/tipo-4-terreo-menor.jpg' },
-    { id:91, type:'image', category:'plantas', subCategory:'pl-2d', isPlant:true, title:'Apto Tipo 5 — Térreo Maior', src:'assets/plantas/2-dormitorios/tipo-5-terreo-maior.png', thumb:'assets/thumbs/plantas/2-dormitorios/tipo-5-terreo-maior.jpg' },
-    { id:92, type:'image', category:'plantas', subCategory:'pl-2d', isPlant:true, title:'Apto Tipo 6 — Tipo Maior',   src:'assets/plantas/2-dormitorios/tipo-6-maior.png',        thumb:'assets/thumbs/plantas/2-dormitorios/tipo-6-maior.jpg' },
-    { id:93, type:'image', category:'plantas', subCategory:'pl-2d', isPlant:true, title:'Apto Tipo 7 — Tipo Menor',   src:'assets/plantas/2-dormitorios/tipo-7-menor.png',        thumb:'assets/thumbs/plantas/2-dormitorios/tipo-7-menor.jpg' },
-
-    // ═══ PLANTAS › 3 DORMITÓRIOS ══════════════════════════════════
-    { id:95, type:'image', category:'plantas', subCategory:'pl-3d', isPlant:true, title:'Apto Tipo 1 — Térreo Menor', src:'assets/plantas/3-dormitorios/tipo-1-terreo-menor.png', thumb:'assets/thumbs/plantas/3-dormitorios/tipo-1-terreo-menor.jpg' },
-    { id:96, type:'image', category:'plantas', subCategory:'pl-3d', isPlant:true, title:'Apto Tipo 2 — Térreo Maior', src:'assets/plantas/3-dormitorios/tipo-2-terreo-maior.png', thumb:'assets/thumbs/plantas/3-dormitorios/tipo-2-terreo-maior.jpg' },
-    { id:97, type:'image', category:'plantas', subCategory:'pl-3d', isPlant:true, title:'Apto Tipo 3 — Tipo',         src:'assets/plantas/3-dormitorios/tipo-3.png',             thumb:'assets/thumbs/plantas/3-dormitorios/tipo-3.jpg' },
+    // ═══ PLANTAS › TORRE 01 ═════════════════════════════════════════
+    { id:30, type:'image', category:'plantas', subCategory:'pl-torre-01', isPlant:true, title:'Apto 003 — Pavimento Térreo', subtitle:'Torre 01', src:'assets/plantas/torre-01/apto-003-pavimento-terreo.jpg', thumb:'assets/thumbs/plantas/torre-01/apto-003-pavimento-terreo.jpg' },
+    { id:31, type:'image', category:'plantas', subCategory:'pl-torre-01', isPlant:true, title:'Apto 502 — Pavimento Tipo',   subtitle:'Torre 01', src:'assets/plantas/torre-01/apto-502-pavimento-tipo.jpeg',  thumb:'assets/thumbs/plantas/torre-01/apto-502-pavimento-tipo.jpg' },
+    { id:32, type:'image', category:'plantas', subCategory:'pl-torre-01', isPlant:true, title:'Apto 504 — Pavimento Tipo',   subtitle:'Torre 01', src:'assets/plantas/torre-01/apto-504-pavimento-tipo.jpeg',  thumb:'assets/thumbs/plantas/torre-01/apto-504-pavimento-tipo.jpg' },
   ],
 };
 
@@ -1039,9 +960,7 @@ const MODE = (() => {
 const DISPLAY_CATS = (() => {
   if (MODE === 'plantas') return [
     { id: 'pl-implantacao', label: 'Implantação' },
-    { id: 'pl-corporativo', label: 'Corporativo' },
-    { id: 'pl-2d',          label: '2 Dormitórios' },
-    { id: 'pl-3d',          label: '3 Dormitórios' },
+    { id: 'pl-torre-01',    label: 'Torre 01' },
   ];
   if (MODE === 'imagens') return GALLERY_CONFIG.categories.filter(c => c.id !== 'plantas');
   return GALLERY_CONFIG.categories;
@@ -1404,7 +1323,7 @@ function init() {
     st.cat = 'pl-implantacao';  // primeira tipologia de plantas
     st.sub = null;
   } else {
-    st.cat = DISPLAY_CATS[0].id;               // 'residencial'
+    st.cat = DISPLAY_CATS[0].id;               // 'areas-comuns'
     const c0 = getCat(st.cat);
     st.sub = (c0 && c0.subs && c0.subs.length) ? c0.subs[0].id : null;  // pré-seleciona 1ª sub
   }
