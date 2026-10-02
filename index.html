@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Galeria — MRV Torres do Parque</title>
+  <title>Galeria — MRV Vila de Setiba</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -11,7 +11,7 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      /* MRV — Torres do Parque — tema verde imersivo.
+      /* MRV — Vila de Setiba — tema verde imersivo.
          --bg = fundo verde-escuro (primária) · --dark = foreground verde-claro (secundária) · --accent = secundária usada em destaque/estado ativo */
       --bg: #002E1D;             /* verde-escuro principal — cor primária */
       --surface: #073C28;        /* superfície de card (verde +luz) */
@@ -878,7 +878,7 @@
 // os campos src com os nomes exatos dos arquivos.
 // ================================================================
 const GALLERY_CONFIG = {
-  projectName: 'MRV — TORRES DO PARQUE',
+  projectName: 'MRV — VILA DE SETIBA',
   projectSub:  '',
 
   categories: [
@@ -887,8 +887,8 @@ const GALLERY_CONFIG = {
     {
       id: 'plantas', label: 'Plantas',
       subs: [
-        { id: 'pl-implantacao', label: 'Implantação' },
-        { id: 'pl-torre-01',    label: 'Torre 01' },
+        { id: 'pl-implantacao',   label: 'Implantação' },
+        { id: 'pl-apartamentos',  label: 'Apartamentos' },
       ]
     },
   ],
@@ -896,27 +896,31 @@ const GALLERY_CONFIG = {
   items: [
 
     // ═══ ÁREAS COMUNS (fachada, lazer e serviços do empreendimento) ═══
-    { id:1, type:'image', category:'areas-comuns', title:'Implantação 3D',  src:'assets/imagens/areas-comuns/implantacao-3d.jpg',  thumb:'assets/thumbs/imagens/areas-comuns/implantacao-3d.jpg' },
-    { id:2, type:'image', category:'areas-comuns', title:'Piscina',         src:'assets/imagens/areas-comuns/piscina.jpg',         thumb:'assets/thumbs/imagens/areas-comuns/piscina.jpg' },
-    { id:3, type:'image', category:'areas-comuns', title:'Playground',      src:'assets/imagens/areas-comuns/playground.jpg',      thumb:'assets/thumbs/imagens/areas-comuns/playground.jpg' },
-    { id:4, type:'image', category:'areas-comuns', title:'Churrasqueira',   src:'assets/imagens/areas-comuns/churrasqueira.jpg',   thumb:'assets/thumbs/imagens/areas-comuns/churrasqueira.jpg' },
-    { id:5, type:'image', category:'areas-comuns', title:'Academia',        src:'assets/imagens/areas-comuns/academia.jpg',        thumb:'assets/thumbs/imagens/areas-comuns/academia.jpg' },
-    { id:6, type:'image', category:'areas-comuns', title:'Salão de Festas', src:'assets/imagens/areas-comuns/salao-de-festas.png', thumb:'assets/thumbs/imagens/areas-comuns/salao-de-festas.jpg' },
-    { id:7, type:'image', category:'areas-comuns', title:'Portaria',        src:'assets/imagens/areas-comuns/portaria.jpg',        thumb:'assets/thumbs/imagens/areas-comuns/portaria.jpg' },
+    { id:1,  type:'image', category:'areas-comuns', title:'Fachada',         src:'assets/imagens/MRV_RES_SETIBA_PPC_FACHADA_2026.05.07.jpg',       thumb:'assets/thumbs/imagens/mrv_res_setiba_ppc_fachada_2026.05.07.jpg' },
+    { id:2,  type:'image', category:'areas-comuns', title:'Foto Montagem',   src:'assets/imagens/MRV_RES_SETIBA_FOTO_MONTAGEM_2026.05.18.jpg',     thumb:'assets/thumbs/imagens/mrv_res_setiba_foto_montagem_2026.05.18.jpg' },
+    { id:3,  type:'image', category:'areas-comuns', title:'Guarita',         src:'assets/imagens/MRV_RES_SETIBA_PPC_GUARITA_2026.05.07.jpg',       thumb:'assets/thumbs/imagens/mrv_res_setiba_ppc_guarita_2026.05.07.jpg' },
+    { id:4,  type:'image', category:'areas-comuns', title:'Playground',      src:'assets/imagens/MRV_RES_SETIBA_PPC_PLAYGROUND_2026.05.07.jpg',    thumb:'assets/thumbs/imagens/mrv_res_setiba_ppc_playground_2026.05.07.jpg' },
+    { id:5,  type:'image', category:'areas-comuns', title:'Mini Quadra',     src:'assets/imagens/MRV_RES_SETIBA_PPC_MINI_QUADRA_2026.05.07.jpg',   thumb:'assets/thumbs/imagens/mrv_res_setiba_ppc_mini_quadra_2026.05.07.jpg' },
+    { id:6,  type:'image', category:'areas-comuns', title:'Churrasqueira',   src:'assets/imagens/MRV_RES_SETIBA_PPC_CHURRASQUEIRA_2026.05.07.jpg', thumb:'assets/thumbs/imagens/mrv_res_setiba_ppc_churrasqueira_2026.05.07.jpg' },
+    { id:7,  type:'image', category:'areas-comuns', title:'Espaço Funcional', src:'assets/imagens/MRV_RES_SETIBA_PPC_FUNCIONAL_2026.05.07.jpg',    thumb:'assets/thumbs/imagens/mrv_res_setiba_ppc_funcional_2026.05.07.jpg' },
+    { id:8,  type:'image', category:'areas-comuns', title:'Pergolado',       src:'assets/imagens/MRV_RES_SETIBA_PPC_ZEM_2026.05.07.jpg',           thumb:'assets/thumbs/imagens/mrv_res_setiba_ppc_zem_2026.05.07.jpg' },
+    { id:9,  type:'image', category:'areas-comuns', title:'Happy Hour',      src:'assets/imagens/MRV_RES_SETIBA_HAPPY_HOUR.jpg',                   thumb:'assets/thumbs/imagens/mrv_res_setiba_happy_hour.jpg' },
+    { id:10, type:'image', category:'areas-comuns', title:'Salão de Festas', src:'assets/imagens/MRV_SALAO_DE_FESTAS.png',                         thumb:'assets/thumbs/imagens/mrv_salao_de_festas.jpg' },
 
     // ═══ APARTAMENTO DECORADO ═══════════════════════════════════════
-    { id:10, type:'image', category:'apartamento', title:'Sala',         src:'assets/imagens/apartamento-decorado/sala.jpg',         thumb:'assets/thumbs/imagens/apartamento-decorado/sala.jpg' },
-    { id:11, type:'image', category:'apartamento', title:'Quarto Maior', src:'assets/imagens/apartamento-decorado/quarto-maior.jpg', thumb:'assets/thumbs/imagens/apartamento-decorado/quarto-maior.jpg' },
-    { id:12, type:'image', category:'apartamento', title:'Quarto Menor', src:'assets/imagens/apartamento-decorado/quarto-menor.jpg', thumb:'assets/thumbs/imagens/apartamento-decorado/quarto-menor.jpg' },
-    { id:13, type:'image', category:'apartamento', title:'Varanda',      src:'assets/imagens/apartamento-decorado/varanda.jpg',      thumb:'assets/thumbs/imagens/apartamento-decorado/varanda.jpg' },
+    { id:20, type:'image', category:'apartamento', title:'Apartamento Tipo 504', src:'assets/imagens/MRV_VILA_SETIBA_INTERNAS_T1_TIPO_504_2026.04.10.jpg',    thumb:'assets/thumbs/imagens/mrv_vila_setiba_internas_t1_tipo_504_2026.04.10.jpg' },
+    { id:21, type:'image', category:'apartamento', title:'Quarto Maior',         src:'assets/imagens/MRV_VILA_SETIBA_INTERNAS_QUARTO_MAIOR_2026.04.09.jpg',   thumb:'assets/thumbs/imagens/mrv_vila_setiba_internas_quarto_maior_2026.04.09.jpg' },
+    { id:22, type:'image', category:'apartamento', title:'Quarto Menor',         src:'assets/imagens/MRV_VILA_SETIBA_INTERNAS_QUARTO_MENOR_2026.04.09.jpg',   thumb:'assets/thumbs/imagens/mrv_vila_setiba_internas_quarto_menor_2026.04.09.jpg' },
+    { id:23, type:'image', category:'apartamento', title:'Varanda',              src:'assets/imagens/VILA_SETIBA_VARANDA_R04_CAM_VARANDA_001.jpg',            thumb:'assets/thumbs/imagens/vila_setiba_varanda_r04_cam_varanda_001.jpg' },
+    { id:24, type:'image', category:'apartamento', title:'Área Privativa',       src:'assets/imagens/MRV_RES_VILA_SETIBA_AREA_PRIVATIVA_2026.04.08.jpg',      thumb:'assets/thumbs/imagens/mrv_res_vila_setiba_area_privativa_2026.04.08.jpg' },
 
     // ═══ PLANTAS › IMPLANTAÇÃO ══════════════════════════════════════
-    { id:20, type:'image', category:'plantas', subCategory:'pl-implantacao', isPlant:true, title:'Implantação', src:'assets/plantas/implantacao/implantacao.jpg', thumb:'assets/thumbs/plantas/implantacao/implantacao.jpg' },
+    { id:30, type:'image', category:'plantas', subCategory:'pl-implantacao', isPlant:true, title:'Implantação', src:'assets/plantas/MRV_RES_SETIBA_PH_IMPLANTACAO_2026.05.07.jpg', thumb:'assets/thumbs/plantas/mrv_res_setiba_ph_implantacao_2026.05.07.jpg' },
 
-    // ═══ PLANTAS › TORRE 01 ═════════════════════════════════════════
-    { id:30, type:'image', category:'plantas', subCategory:'pl-torre-01', isPlant:true, title:'Apto 003 — Pavimento Térreo', subtitle:'Torre 01', src:'assets/plantas/torre-01/apto-003-pavimento-terreo.jpg', thumb:'assets/thumbs/plantas/torre-01/apto-003-pavimento-terreo.jpg' },
-    { id:31, type:'image', category:'plantas', subCategory:'pl-torre-01', isPlant:true, title:'Apto 502 — Pavimento Tipo',   subtitle:'Torre 01', src:'assets/plantas/torre-01/apto-502-pavimento-tipo.jpeg',  thumb:'assets/thumbs/plantas/torre-01/apto-502-pavimento-tipo.jpg' },
-    { id:32, type:'image', category:'plantas', subCategory:'pl-torre-01', isPlant:true, title:'Apto 504 — Pavimento Tipo',   subtitle:'Torre 01', src:'assets/plantas/torre-01/apto-504-pavimento-tipo.jpeg',  thumb:'assets/thumbs/plantas/torre-01/apto-504-pavimento-tipo.jpg' },
+    // ═══ PLANTAS › APARTAMENTOS ═════════════════════════════════════
+    { id:40, type:'image', category:'plantas', subCategory:'pl-apartamentos', isPlant:true, title:'Apto 108', src:'assets/plantas/MRV_VILA_DE_SETIBA_APTO_108__GERAL__R02.jpg', thumb:'assets/thumbs/plantas/mrv_vila_de_setiba_apto_108__geral__r02.jpg' },
+    { id:41, type:'image', category:'plantas', subCategory:'pl-apartamentos', isPlant:true, title:'Apto 901', src:'assets/plantas/MRV_VILA_DE_SETIBA_APTO_901__GERAL__R02.jpg', thumb:'assets/thumbs/plantas/mrv_vila_de_setiba_apto_901__geral__r02.jpg' },
+    { id:42, type:'image', category:'plantas', subCategory:'pl-apartamentos', isPlant:true, title:'Apto 904', src:'assets/plantas/MRV_VILA_DE_SETIBA_APTO_904__GERAL__R02.jpg', thumb:'assets/thumbs/plantas/mrv_vila_de_setiba_apto_904__geral__r02.jpg' },
   ],
 };
 
@@ -960,7 +964,7 @@ const MODE = (() => {
 const DISPLAY_CATS = (() => {
   if (MODE === 'plantas') return [
     { id: 'pl-implantacao', label: 'Implantação' },
-    { id: 'pl-torre-01',    label: 'Torre 01' },
+    { id: 'pl-apartamentos', label: 'Apartamentos' },
   ];
   if (MODE === 'imagens') return GALLERY_CONFIG.categories.filter(c => c.id !== 'plantas');
   return GALLERY_CONFIG.categories;

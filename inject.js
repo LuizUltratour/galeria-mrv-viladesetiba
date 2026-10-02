@@ -1,9 +1,9 @@
 (function (w, d) {
   'use strict';
 
-  var GALLERY_URL        = 'https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/MRV/mrv+torres+do+parque/ferramentas/galeria/index.html';
-  var VIDEO_GALLERY_URL  = 'https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/MRV/mrv+torres+do+parque/ferramentas/galeria/video-gallery.html';
-  var DIFERENCIAIS_URL   = 'https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/MRV/mrv+torres+do+parque/ferramentas/galeria/diferenciais.html';
+  var GALLERY_URL        = 'https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/MRV/galeria-vila-de-setiba/index.html';
+  var VIDEO_GALLERY_URL  = 'https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/MRV/galeria-vila-de-setiba/video-gallery.html';
+  var DIFERENCIAIS_URL   = 'https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/MRV/galeria-vila-de-setiba/diferenciais.html';
 
   var overlay    = null;
   var msgHandler = null;

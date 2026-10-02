@@ -1,8 +1,8 @@
-# Modern Galeria — MRV Torres do Parque
+# Modern Galeria — MRV Vila de Setiba
 
 Galeria de imagens/plantas/vídeos para injeção via script no 3DVista, hospedada no AWS S3.
 
-**Projeto:** MRV — Torres do Parque
+**Projeto:** MRV — Vila de Setiba
 **Tema:** verde imersivo (`#002E1D` / `#EAFFF7`)
 
 ---
@@ -11,18 +11,18 @@ Galeria de imagens/plantas/vídeos para injeção via script no 3DVista, hospeda
 
 | Arquivo | URL |
 |---------|-----|
-| Galeria | `https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/MRV/mrv+torres+do+parque/ferramentas/galeria/index.html` |
-| Vídeos  | `https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/MRV/mrv+torres+do+parque/ferramentas/galeria/video-gallery.html` |
-| Script  | `https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/MRV/mrv+torres+do+parque/ferramentas/galeria/inject.js` |
+| Galeria | `https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/MRV/galeria-vila-de-setiba/index.html` |
+| Vídeos  | `https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/MRV/galeria-vila-de-setiba/video-gallery.html` |
+| Script  | `https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/MRV/galeria-vila-de-setiba/inject.js` |
 
-**S3 path:** `s3://skylineip/Tour Virtual/MRV/mrv torres do parque/ferramentas/galeria/`
+**S3 path:** `s3://skylineip/Tour Virtual/MRV/galeria-vila-de-setiba/`
 
 ---
 
 ## Estrutura de arquivos
 
 ```
-galeria/  (MRV / torres do parque)
+galeria/  (MRV / vila de setiba)
 ├── index.html              ← galeria de imagens + plantas (auto-suficiente)
 ├── video-gallery.html      ← galeria de vídeos
 ├── diferenciais.html       ← ficha de diferenciais (scroll)
@@ -31,13 +31,9 @@ galeria/  (MRV / torres do parque)
 ├── generate_thumbs.ps1     ← gerador de thumbnails (Windows/GDI+, sem deps)
 ├── generate_thumbs.py      ← gerador alternativo (Python + Pillow)
 └── assets/
-    ├── imagens/
-    │   ├── areas-comuns/         ← implantação 3D, piscina, playground, churrasqueira,
-    │   │                            academia, salão de festas, portaria
-    │   └── apartamento-decorado/ ← sala, quarto maior, quarto menor, varanda
-    ├── plantas/
-    │   ├── implantacao/          ← planta de implantação (níveis do empreendimento)
-    │   └── torre-01/              ← plantas humanizadas dos aptos (003, 502, 504)
+    ├── imagens/              ← renders: áreas comuns (fachada, lazer, salão, happy hour) e
+    │                            apartamento decorado (arquivos soltos, sem subpastas)
+    ├── plantas/              ← implantação e plantas dos aptos 108, 901 e 904
     ├── videos/               ← .mp4 (gitignored; direto no S3)
     ├── BOOK-PRINT.pdf        ← book de referência (gitignored, não sobe ao S3)
     └── thumbs/               ← gerado automaticamente (espelha a árvore, .jpg)
@@ -53,15 +49,15 @@ galeria/  (MRV / torres do parque)
 
 | Categoria | Label | Pasta |
 |-----------|-------|-------|
-| `areas-comuns` | Áreas Comuns | `assets/imagens/areas-comuns/` |
-| `apartamento`  | Apartamento Decorado | `assets/imagens/apartamento-decorado/` |
+| `areas-comuns` | Áreas Comuns | `assets/imagens/` |
+| `apartamento`  | Apartamento Decorado | `assets/imagens/` |
 
 ### Modo `plantas`
 
 | Tipologia | Label | Pasta | Formato |
 |-----------|-------|-------|---------|
-| `pl-implantacao` | Implantação | `assets/plantas/implantacao/` | card individual |
-| `pl-torre-01`    | Torre 01    | `assets/plantas/torre-01/`    | cards individuais (aptos 003, 502, 504) |
+| `pl-implantacao` | Implantação | `assets/plantas/` | card individual |
+| `pl-apartamentos` | Apartamentos | `assets/plantas/` | cards individuais (aptos 108, 901, 904) |
 
 ---
 
@@ -70,14 +66,14 @@ galeria/  (MRV / torres do parque)
 Plantas que são **níveis de um mesmo conjunto** podem ser agrupadas num único card com abas
 que alternam (e sobrepõem) as variantes. Quando há **exatamente 2 pisos**, aparece também
 o botão "Ver ambas" (comparação lado a lado); com mais pisos, só as abas. Nenhum item do
-projeto atual usa esse formato — todas as plantas de Torres do Parque são cards individuais —
+projeto atual usa esse formato — todas as plantas de Vila de Setiba são cards individuais —
 mas o suporte permanece no motor da galeria para uso futuro:
 
 ```js
-{ type:'cobertura-plan', category:'plantas', subCategory:'pl-torre-01',
-  title:'Pavimentos — Torre 01', subtitle:'Torre 01', floors:[
-    { label:'Térreo',       src:'assets/plantas/torre-01/terreo.jpg',       thumb:'assets/thumbs/plantas/torre-01/terreo.jpg' },
-    { label:'Tipo',         src:'assets/plantas/torre-01/tipo.jpg',         thumb:'assets/thumbs/plantas/torre-01/tipo.jpg' },
+{ type:'cobertura-plan', category:'plantas', subCategory:'pl-apartamentos',
+  title:'Pavimentos — Apartamentos', subtitle:'Apartamentos', floors:[
+    { label:'Térreo',       src:'assets/plantas/terreo.jpg',       thumb:'assets/thumbs/plantas/terreo.jpg' },
+    { label:'Tipo',         src:'assets/plantas/tipo.jpg',         thumb:'assets/thumbs/plantas/tipo.jpg' },
 ]},
 ```
 
@@ -111,7 +107,7 @@ ignora `thumbs/`, `videos/` e o PDF.
 ### Sync completo
 
 ```bash
-aws s3 sync . "s3://skylineip/Tour Virtual/MRV/mrv torres do parque/ferramentas/galeria/" \
+aws s3 sync . "s3://skylineip/Tour Virtual/MRV/galeria-vila-de-setiba/" \
   --exclude ".git/*" --exclude ".claude/*" --exclude "*.py" \
   --exclude "README.md" --exclude ".gitattributes" --exclude "*.md" \
   --exclude "deploy.ps1" --exclude "*.pdf" \
@@ -121,10 +117,10 @@ aws s3 sync . "s3://skylineip/Tour Virtual/MRV/mrv torres do parque/ferramentas/
 ### Atualizar só index.html e inject.js
 
 ```bash
-aws s3 cp index.html "s3://skylineip/Tour Virtual/MRV/mrv torres do parque/ferramentas/galeria/index.html" \
+aws s3 cp index.html "s3://skylineip/Tour Virtual/MRV/galeria-vila-de-setiba/index.html" \
   --cache-control "no-cache,no-store,must-revalidate"
 
-aws s3 cp inject.js "s3://skylineip/Tour Virtual/MRV/mrv torres do parque/ferramentas/galeria/inject.js" \
+aws s3 cp inject.js "s3://skylineip/Tour Virtual/MRV/galeria-vila-de-setiba/inject.js" \
   --cache-control "no-cache,no-store,must-revalidate"
 ```
 
@@ -139,7 +135,7 @@ aws s3 cp inject.js "s3://skylineip/Tour Virtual/MRV/mrv torres do parque/ferram
 ```js
 (function(){
   var s = document.createElement('script');
-  s.src = 'https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/MRV/mrv+torres+do+parque/ferramentas/galeria/inject.js?v=' + Date.now();
+  s.src = 'https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/MRV/galeria-vila-de-setiba/inject.js?v=' + Date.now();
   document.head.appendChild(s);
 })();
 ```
@@ -166,7 +162,7 @@ GaleriaPlantas(0);
 
 ## Cores e tipografia
 
-Tema **verde imersivo** do MRV — Torres do Parque:
+Tema **verde imersivo** do MRV — Vila de Setiba:
 
 | Token CSS | Valor | Papel |
 |-----------|-------|-------|
