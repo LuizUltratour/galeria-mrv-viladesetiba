@@ -24,7 +24,7 @@ Galeria de imagens/plantas/vídeos para injeção via script no 3DVista, hospeda
 ```
 galeria/  (MRV / vila de setiba)
 ├── index.html              ← galeria de imagens + plantas (auto-suficiente)
-├── video-gallery.html      ← galeria de vídeos
+├── video-gallery.html      ← galeria de vídeos (abas: Produto, Clipe Lançamento, Vertical, Vem aí)
 ├── diferenciais.html       ← ficha de diferenciais (scroll)
 ├── inject.js               ← loader leve para injeção no 3DVista
 ├── deploy.ps1              ← deploy para o S3 (Windows; normaliza case + sync)
@@ -157,6 +157,39 @@ GaleriaPlantas(1);
 // Fecha galeria de plantas
 GaleriaPlantas(0);
 ```
+
+---
+
+## Galeria de vídeos
+
+Página `video-gallery.html`: uma aba por vídeo, player em tela cheia, mesmo tema verde.
+
+| Aba | Arquivo | Observação |
+|-----|---------|------------|
+| Produto | `assets/videos/produto.mp4` | 4K, 1m26s — abre com autoplay (mudo) |
+| Clipe Lançamento | `assets/videos/clipe-lancamento-horizontal.mp4` | 1920×1080 |
+| Clipe Vertical | `assets/videos/clipe-lancamento-vertical.mp4` | 1080×1920 (9:16, centralizado) |
+| Vem aí | `assets/videos/vem-ai.mp4` | 4K, 45s |
+
+### Como aplicar
+
+1. **Nome do arquivo:** minúsculo, sem espaços/acentos (o S3 é case-sensitive). Coloque em `assets/videos/`.
+   Os vídeos são `.gitignore`d (pesados): sobem **direto para o S3**, não pelo git.
+   A pasta `assets/video/` (singular) é só a origem bruta e é ignorada no deploy.
+2. **Nova aba:** em `video-gallery.html`, duplique um `<button class="vg-tab" data-tab="x">` e o
+   `<div id="tab-x" class="tab-panel">` com o `<video data-tab="x" src="assets/videos/arquivo.mp4">`
+   (o `data-tab` do botão, o `id="tab-…"` e o `data-tab` do vídeo devem coincidir).
+3. **Trocar vídeo:** altere o `src` do `<video>` correspondente (ou substitua o arquivo mantendo o nome).
+4. **Subir:** `./deploy.ps1` (sync completo, inclui os vídeos). Para só a página: `aws s3 cp video-gallery.html "s3://skylineip/Tour Virtual/MRV/galeria-vila-de-setiba/video-gallery.html" --cache-control "no-cache,no-store,must-revalidate"`.
+5. **Acionar no 3DVista** (hotspot/botão):
+
+```js
+AbrirGaleriaVideos(1);  // abre
+AbrirGaleriaVideos(0);  // fecha
+```
+
+> Dica: vídeos 4K são pesados para mobile. Se necessário, gere versões 1080p
+> (`ffmpeg -i in.mp4 -vf scale=-2:1080 -crf 24 -preset slow out.mp4`) e troque o `src`.
 
 ---
 
