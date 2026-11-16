@@ -50,7 +50,7 @@ galeria/  (MRV / vila de setiba)
 | Categoria | Label | Pasta |
 |-----------|-------|-------|
 | `areas-comuns` | Áreas Comuns | `assets/imagens/` |
-| `apartamento`  | Apartamento Decorado | `assets/imagens/` |
+| `apartamento`  | Perspectivas Internas | `assets/imagens/` |
 
 ### Modo `plantas`
 
